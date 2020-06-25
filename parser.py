@@ -1,21 +1,21 @@
 import json
 
 # get the JSON from mls_pubs.json
-data = []
-text = ''
+# data = []
+text = []
 
 with open('data/microwave_limb_sounder/mls_pubs.json') as f:
     for line in f:
             j = json.loads(line)
-            data.append(j)
+            text.append(json.loads(line).get("_source").get("text"))
             # print(j.get("_source").get("text"))
-            break
+            # break
 
-text = data[0].get("_source").get("text")
-print(text)
+# text = data[0].get("_source").get("text")
+print(text[500])
 
 # check that data has all the lines
-# print(len(data))
+print(len(text))
 # shocker, it does
 
 # print first line
