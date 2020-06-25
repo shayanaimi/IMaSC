@@ -8,10 +8,12 @@ with open('data/microwave_limb_sounder/mls_pubs.json') as f:
 
 # print first line
 # change this code because you realize that Python has 0 indexing
-print(data[0])
+# print(data[0])
 
 # save first line to a .txt file
 #line = open('line.txt','x+')
 
-with open('line.txt','x+') as line:
-    line.write('' + data[0])
+with open('line.json','w+') as line:
+    json.dump(data[2],line)
+
+print(data[2])
