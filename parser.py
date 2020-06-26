@@ -1,18 +1,41 @@
 import json
+import spacy
 
-# get the article texts from mls_pubs.json
-text = []
 
-# opens the file and iterates through each line, adding the text to the dict
-with open('data/microwave_limb_sounder/mls_pubs.json') as f:
-    for line in f:
+# Get the article texts from mls_pubs.json
+titles = []
+articles = []
+
+# Opens the file and iterates through each line
+# Adds titles and article texts to dicts
+with open('data/microwave_limb_sounder/mls_pubs.json') as source:
+    for line in source:
             j = json.loads(line)
-            text.append(json.loads(line).get("_source").get("text"))
+            titles.append(j.get("_source").get("title"))
+            articles.append(j.get("_source").get("text"))
+            
+# Save it all to a text file
+# file = open('articles.json','w+')
+# for i in text:
+#     file.(i)
 
-# check that data has all the lines. Keeping for future reference
-# print(len(text))
-# shocker, it does
+# file.close()
+# Commenting out, may not need to save to a file of any sort
+# May need to add code to save texts to a .txt, so keeping
 
-# save first line to a .txt file
-# line = open('line.txt','w+')
-# may need to add code to save texts to a .txt, so keeping
+# Load English tokenizer, tagger, parser, NER and word vectors
+nlp = spacy.load("en_core_web_sm")
+
+# Process whole documents
+text = articles[0]
+doc = nlp(text)
+
+# Analyze syntax
+print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
+print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
+
+# Find named entities, phrases and concepts
+for entity in doc.ents:
+    print(entity.text, entity.label_)
+
+# Adapted from spaCy website
