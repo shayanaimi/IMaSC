@@ -1,31 +1,33 @@
 import json
+
 # import spacy
 from sys import argv
 
 script, json_file = argv
 
 # Get the article texts from mls_pubs.json
-titles = []
 articles = {}
-articles['text'] = []
+articles["text"] = []
+articles["title"] = []
 
 # Opens the file and iterates through each line
 # Adds titles and article texts to dicts
 source = open(json_file)
+file = open("article_text.jsonl", "a+")
+
 for line in source:
-        j = json.loads(line)
-        titles.append(j.get("_source").get("title"))
-        articles['text'].append(j.get("_source").get("text"))
-            
+    j = json.loads(line)
+    articles["title"] = j.get("_source").get("title")
+    articles["text"] = j.get("_source").get("text")
+    json.dump(articles, file)
+
 # Save it all to a text file
-file = open('article_text.jsonl','w+')
-json.dump(articles, file)
+# file = open("article_text.jsonl", "w+")
+# json.dump(articles, file)
 
 file.close()
 # Commenting out, may not need to save to a file of any sort
 # May need to add code to save texts to a .txt, so keeping
-
-
 
 
 # Commenting out spaCy code, actually need to parse the jsonl
