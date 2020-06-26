@@ -1,6 +1,8 @@
 import json
 import spacy
+from sys import argv
 
+script, json_file = argv
 
 # Get the article texts from mls_pubs.json
 titles = []
@@ -8,11 +10,11 @@ articles = []
 
 # Opens the file and iterates through each line
 # Adds titles and article texts to dicts
-with open('data/microwave_limb_sounder/mls_pubs.json') as source:
-    for line in source:
-            j = json.loads(line)
-            titles.append(j.get("_source").get("title"))
-            articles.append(j.get("_source").get("text"))
+source = open(json_file)
+for line in source:
+        j = json.loads(line)
+        titles.append(j.get("_source").get("title"))
+        articles.append(j.get("_source").get("text"))
             
 # Save it all to a text file
 # file = open('articles.json','w+')
