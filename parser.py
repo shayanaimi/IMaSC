@@ -1,52 +1,27 @@
 import json
-
-# import spacy
 from sys import argv
 
-script, json_file = argv
+# Expects 3 arguments: script name, the jsonl source file (mls_pubs.jsonl), and
+# the jsonl output file name (must be a .jsonl for annotation)
+script, jsonl_source, jsonl_output = argv
 
-# Get the article texts from mls_pubs.json
+# Dict for each article, may need more than the title and text
 articles = {}
 articles["title"] = []
 articles["text"] = []
 
 
-# Opens the file and iterates through each line
-# Adds titles and article texts to dicts
-source = open(json_file)
-file = open("article_text.jsonl", "w+")
+# Opens the source and output and iterates through each line of the source
+# Adds titles and article texts to dict
+# Adds dict, in JSON form, to output, line by line
+source = open(jsonl_source)
+output = open(jsonl_output, "w+")
 
 for line in source:
     j = json.loads(line)
     articles["title"] = j.get("_source").get("title")
     articles["text"] = j.get("_source").get("text")
-    json.dump(articles, file)
-    file.write('\n')
+    json.dump(articles, output)
+    output.write('\n')
 
-
-# Save it all to a text file
-# file = open("article_text.jsonl", "w+")
-# json.dump(articles, file)
-
-file.close()
-# Commenting out, may not need to save to a file of any sort
-# May need to add code to save texts to a .txt, so keeping
-
-
-# Commenting out spaCy code, actually need to parse the jsonl
-# # Load English tokenizer, tagger, parser, NER and word vectors
-# nlp = spacy.load("en_core_web_sm")
-
-# # Process whole documents
-# text = articles[0]
-# doc = nlp(text)
-
-# # Analyze syntax
-# print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
-# print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
-
-# # Find named entities, phrases and concepts
-# for entity in doc.ents:
-#     print(entity.text, entity.label_)
-
-# # Adapted from spaCy website
+output.close()
