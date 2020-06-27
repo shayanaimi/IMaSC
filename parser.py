@@ -7,20 +7,21 @@ script, json_file = argv
 
 # Get the article texts from mls_pubs.json
 articles = {}
-#articles["title"] = []
+articles["title"] = []
 articles["text"] = []
 
 
 # Opens the file and iterates through each line
 # Adds titles and article texts to dicts
 source = open(json_file)
-file = open("article_text.jsonl", "a+")
+file = open("article_text.jsonl", "w+")
 
 for line in source:
     j = json.loads(line)
-    #articles["title"] = j.get("_source").get("title")
+    articles["title"] = j.get("_source").get("title")
     articles["text"] = j.get("_source").get("text")
-    json.dump(articles, file, indent = 0)
+    json.dump(articles, file)
+    file.write('\n')
 
 
 # Save it all to a text file
