@@ -20,7 +20,8 @@ for line in source:
     j = json.loads(line)
     #articles["title"] = j.get("_source").get("title")
     articles["text"] = j.get("_source").get("text")
-    json.dump(articles, file)
+    json.dump(articles, file, indent = 0)
+
 
 # Save it all to a text file
 # file = open("article_text.jsonl", "w+")
