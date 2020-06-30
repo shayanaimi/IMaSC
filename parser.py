@@ -3,7 +3,8 @@ from sys import argv
 
 # Expects 3 arguments: script name, the jsonl source file (mls_pubs.jsonl), and
 # the jsonl output file name (must be a .jsonl for annotation)
-script, source, output = argv
+# script, source, output = argv
+# Currently removing command line arguments
 
 def get_article_text(jsonl_source = "data/microwave_limb_sounder/mls_pubs.jsonl", jsonl_output = "data/microwave_limb_sounder/article_text.jsonl"):
     # Dict for each article, may need more than the title and text

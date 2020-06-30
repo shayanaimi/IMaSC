@@ -12,3 +12,6 @@ venv.bak/
 
 # Packages
 prodigy-1.8.5/
+
+# Tests
+__pycache__/
