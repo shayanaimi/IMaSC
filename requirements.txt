@@ -1,2 +1,4 @@
 prodigy>=1.8.5
 spacy>=2.1.9
+spacy-lookups-data>=0.3.2
+en-core-web-sm>=2.1.0
