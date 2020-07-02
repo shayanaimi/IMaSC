@@ -29,3 +29,5 @@ def get_articles(
 
 def test_get_articles():
     assert get_articles() == True
+
+# Can test to make sure that random article text is the same between both jsonl files
