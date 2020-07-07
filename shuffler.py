@@ -12,9 +12,10 @@ def shuffle_article_text(
         data = [(random.random(), line) for line in source]
         source.close()
     
-    #
+    # Sorts the data (not entirely sure why this works, but hey)
     data.sort()
 
+    # Writes shuffled text to file
     with open(shuffled_text,'w+') as target:
         for _, line in data:
             target.write(line)
