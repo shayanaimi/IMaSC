@@ -7,7 +7,7 @@ def shuffle_article_text(
     shuffled_text="data/microwave_limb_sounder/shuffle_text.jsonl",
     training_set="data/microwave_limb_sounder/training_set.jsonl",
     validation_set="data/microwave_limb_sounder/validation_set.jsonl",
-    test_set="data/microwave_limb_sounder/test_set.jsonl"
+    testing_set="data/microwave_limb_sounder/testing_set.jsonl"
 ):
 
     # Open the original file and randomize the order
@@ -18,14 +18,32 @@ def shuffle_article_text(
     # Sorts the data (not entirely sure why this works, but hey)
     data.sort()
 
+    print(len(data)*0.7)
+    count = 0
+
+    for j in range(len(data) + 1):
+        #print(data[j])
+        count += 1
+        #print(count)
+
     # Writes 70% of shuffled text to training set
+    training = open(training_set)
+    validation = open(validation_set)
+    testing = open(test_set)
     with open(training_set,'w+') as target:
-        for i,line in data:
-            if i > len(data)*0.7:
-                print("Test")
-                print(i)
-                break
-            target.write(line)
+        for j in range(len(data) + 1):
+            # print(i)
+            # break
+            if j < len(data)*0.7:
+                target.write(data[j][1])
+                # print("Test")
+                # print(j)
+                # break
+            elif j >= len(data*0.7) and j < len(data)*0.85:
+                target.write(data[j][1])
+            else:
+              target.write(data[j][1])  
+            
     target.close()
 
     # Writes 15% of shuffled text to training set
