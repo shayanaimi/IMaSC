@@ -40,8 +40,7 @@ def get_article_text(
 # The sets are my training, validation, and testing sets for Prodigy
 def shuffle_article_text(
     article_text="data/microwave_limb_sounder/article_text.jsonl",
-    training_set_1="data/microwave_limb_sounder/training_set_1.jsonl",
-    training_set_2="data/microwave_limb_sounder/training_set_2.jsonl",
+    training_set="data/microwave_limb_sounder/training_set.jsonl",
     validation_set="data/microwave_limb_sounder/validation_set.jsonl",
     testing_set="data/microwave_limb_sounder/testing_set.jsonl"
 ):
@@ -56,24 +55,20 @@ def shuffle_article_text(
 
     # Writes 70% of shuffled text to training set and 15% each to validation
     # and testing sets (70 + 15 + 15 = 100)
-    training_1 = open(training_set_1, "w+")
-    training_2 = open(training_set_2, "w+")
+    training = open(training_set, "w+")
     validation = open(validation_set, "w+")
     testing = open(testing_set, "w+")
 
     for j in range(len(data)):
 
-        if j < len(data)*0.35:
-            training_1.write(data[j][1])
-        elif j >= len(data)*0.35 and j < len(data)*0.7:
-            training_2.write(data[j][1])
+        if j < len(data)*0.7:
+            training.write(data[j][1])
         elif j >= len(data)*0.7 and j < len(data)*0.85:
             validation.write(data[j][1])
         else:
             testing.write(data[j][1])  
         
-    training_1.close()
-    training_2.close()
+    training.close()
     validation.close()
     testing.close()
     os.remove(article_text)

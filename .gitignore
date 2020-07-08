@@ -15,3 +15,8 @@ prodigy-1.8.5/
 
 # Tests
 __pycache__/
+
+# Datasets
+training_set.jsonl
+validation_set.jsonl
+testing_set.jsonl
