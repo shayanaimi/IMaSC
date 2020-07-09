@@ -10,7 +10,7 @@ def get_article_text(
 ):
     # Dict for each article, may need more than the title and text
     articles = {}
-    articles["title"] = []
+    #articles["title"] = []
     articles["text"] = []
     text = ""
     sentences = []
@@ -22,11 +22,11 @@ def get_article_text(
 
     for line in source:
         j = json.loads(line)
-        articles["title"] = j.get("_source").get("title")
+        #articles["title"] = j.get("_source").get("title")
         text = j.get("_source").get("text")
 
         # Splits text at the sentence level (as best as it can be done)
-        sentences = text.split('.')
+        sentences = text.split('\n\n')
 
         # Adds dict, in JSON form, to output, line by line
         for i in sentences:
