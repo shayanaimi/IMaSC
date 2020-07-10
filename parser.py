@@ -28,17 +28,17 @@ def get_article_text(
 
         # Splits text at the sentence level (as best as it can be done)
         chunks = text.split('\n\n')
-        chunks.sort(key=sortByLength)
+        # chunks.sort(key=sortByLength)
 
         # Adds dict, in JSON form, to output, line by line
         for i in chunks:
             # print(i)
+            if len(i) < 50:
+                continue
             cleaned_string = clean_text(i)
             articles["text"] = cleaned_string
             json.dump(articles, output)
             output.write("\n")
-        
-        break
 
     output.close()
 
@@ -125,9 +125,10 @@ def clean_text(text, scrub_nums=False, scrub_names=False):
         text = text.replace("\u2190", "LEFT_ARROW")  # arrow
         text = text.replace("\u2193", "DOWN_ARROW")  # arrow
         text = text.replace("\u2194", "LEFT_RIGHT_ARROW")  # arrow
-        text = text.replace("\u0000", "_")  # no break space
-        text = text.replace("cost", "")  # word cost
-        text = text.replace(";", "")  # word cost
+        text = text.replace("\u00a0", "_")  # no break space
+        text = text.replace("\f", "")  # page break
+        text = text.replace("\u0000", "")  # null character
+        text = text.replace("\u00b0", " degrees")  # degrees
         # text = re.sub("[\(\[].*?[\)\]]", "", text) # remove parentheses and brackets and what's inside them
 
         if scrub_nums:
@@ -147,4 +148,4 @@ def clean_text(text, scrub_nums=False, scrub_names=False):
 # Executes the script
 if __name__ == "__main__":
     get_article_text()
-    #shuffle_article_text()
+    shuffle_article_text()
