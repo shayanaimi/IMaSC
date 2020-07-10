@@ -14,7 +14,6 @@ def get_article_text(
     #articles["title"] = []
     articles["text"] = []
     text = ""
-    sentences = []
 
     # Opens the source and output and iterates through each line of the source
     # Adds titles and article texts to dict
@@ -26,7 +25,7 @@ def get_article_text(
         #articles["title"] = j.get("_source").get("title")
         text = j.get("_source").get("text")
 
-        # Splits text at the sentence level (as best as it can be done)
+        # Splits text at the paragraph level (as best as it can be done)
         chunks = text.split('\n\n')
         # chunks.sort(key=sortByLength)
 
