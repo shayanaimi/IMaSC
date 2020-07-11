@@ -41,7 +41,7 @@ def get_unicode_text(
             cleaned_string = clean_text(i)
             raw_string = r"{cleaned_string}"
 
-            substring = r"\u"
+            substring = r"\"
 
             if search(substring, raw_string):
                 print("Found!")
