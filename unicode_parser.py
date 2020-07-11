@@ -2,6 +2,8 @@ import json
 import random
 import os
 import codecs
+import re
+from re import search
 
 # jsonl_source = path to a file that we will read from
 # jsonl_output = path to the file that we will write to
@@ -31,6 +33,8 @@ def get_unicode_text(
         # Adds dict, in JSON form, to output, line by line
         for i in chunks:
 
+            # print(type(i))
+
             if len(i) < 50:
                 continue
             
@@ -39,11 +43,12 @@ def get_unicode_text(
 
             substring = r"\u"
 
-            if substring in raw_string:
-                print("Here")
+            if search(substring, raw_string):
+                print("Found!")
                 articles["text"] = i
                 json.dump(articles, output)
                 output.write("\n")
+                
 
     output.close()
 
@@ -53,7 +58,8 @@ def to_raw(string):
 def sortByLength(o):
     return len(o)
 
-def clean_text(text, scrub_nums=False, scrub_names=False):
+def clean_text(text):
+
         # simple text cleaning to remove some unicode representations
         text = text.replace("\u00a0", "")  # empty space
         text = text.replace("\u2022", "; ")  # bullet
@@ -99,21 +105,9 @@ def clean_text(text, scrub_nums=False, scrub_names=False):
         text = text.replace("\f", "")  # page break
         text = text.replace("\u0000", "")  # null character
         text = text.replace("\u00b0", " degrees")  # degrees
-        # text = re.sub("[\(\[].*?[\)\]]", "", text) # remove parentheses and brackets and what's inside them
-
-        if scrub_nums:
-            # remove any numbers
-            text = ''.join([i for i in text if not i.isdigit()])
-            # replace dash and spaces with comma for later splitting
-            text = text.replace('-', ',').strip()
-
-        if scrub_names:
-            text = text.strip()
-            if len(text) > 1:
-                return text
-
-        else:
-            return text
+        text = re.sub("[\(\[].*?[\)\]]", "", text) # remove parentheses and brackets and what's inside them
+        
+        return text
 
 # Executes the script
 if __name__ == "__main__":
