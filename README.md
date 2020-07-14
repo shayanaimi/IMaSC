@@ -2,19 +2,38 @@
 
 
 # IMaSC
+
 Intelligent Mission and Scientific Instrument Classification. Applying unique NLP approaches to improve information extraction through scientific papers/Foundry A-Team Studies.
 
 ## The Data
+
 Available datasets can be found in the `data` directory. The `microwave_limb_sounder` dataset contains a data dump of data from an Elasticsearch index, which contains documents with their parsed text ([PDF Miner](https://github.com/euske/pdfminer) was used to extract text from the PDF documents). The dataset also contains some, but not all, source PDFs. There are `1109` JSON documents but only `604` PDFs. The PDFs could be used with an altetrnative means of text extraction if desired and new machine-readable data generated for use in modeling.
 
-### Generating usable datasets
-To generate training, validation, and testing sets, run 'parser.py' with default inputs. This will generate the three files `training_set.jsonl`, 
-`validation_set.jsonl`, and `testing_set.jsonl` in the `data/microwave_limb_sounder` directory.
+### Generating datasets
 
+To generate training, validation, and testing sets, run 'parser.py' with default inputs. This will generate the three files `training_set.jsonl`, `validation_set.jsonl`, and `testing_set.jsonl` in the 
+`data/microwave_limb_sounder` directory.
+
+### Using Prodigy
+
+Prodigy will allow you to annotate your datasets. 
+- To start Prodigy, run `prodigy ner.manual name_of_dataset name_of_model ./path/to/dataset.jsonl --label INSTRUMENTS,SPACECRAFT` in the `IMaSC` directory. 
+- From there, open a browser and enter [http://localhost:8080/](http://localhost:8080/) in 
+the search bar. Prodigy should be running on port 8080 by default. 
+- To annotate text, click on the annotation you wish to apply and highlight the text you wish to annotate. 
+Prodigy will automatically apply the annotation. 
+- To remove an annotation, hover over the top left corner of an existing annotation 
+and click the "X". 
+- Once you have finished annotating a piece of text (you may not need to annotate anything), 
+click the green check mark. If a piece of text is not appropriate for annotation, 
+click the grey no symbol to skip it.
+- You can also click the grey return to undo an annotation.
 ## Versioning
+
 [Semantic versioning](https://semver.org/) is used for this project. If you are contributing to this project, please use semantic versioning guidelines when submitting your pull request.
 
 ## Contributing
+
 Please use the issue tracker to report any unexpected behavior or desired features.
 
 If you would like to contribute to development:
