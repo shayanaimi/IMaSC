@@ -2,6 +2,7 @@ import json
 import random
 import os
 import codecs
+import numpy as np
 
 # jsonl_source = path to a file that we will read from
 # jsonl_output = path to the file that we will write to
@@ -47,15 +48,18 @@ def shuffle_article_text(
     article_text="data/microwave_limb_sounder/article_text.jsonl",
     training_set="data/microwave_limb_sounder/training_set.jsonl",
     validation_set="data/microwave_limb_sounder/validation_set.jsonl",
-    testing_set="data/microwave_limb_sounder/testing_set.jsonl"
+    testing_set="data/microwave_limb_sounder/testing_set.jsonl",
+    random_seed = 174
 ):
 
-    # Open the original file and randomize the order
+    np.random.seed(random_seed)
+
+    # Open the original file and assigns a random number to each line
     with open(article_text,'r') as source:
-        data = [(random.random(), line) for line in source]
+        data = [(np.random.rand(), line) for line in source]
         source.close()
     
-    # Sorts the data (not entirely sure why this works, but hey)
+    # Sorts the data by the random number
     data.sort()
 
     # Writes 70% of shuffled text to training set and 15% each to validation

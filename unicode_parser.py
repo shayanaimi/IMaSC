@@ -33,21 +33,24 @@ def get_unicode_text(
         # Adds dict, in JSON form, to output, line by line
         for i in chunks:
 
+
+
             # print(type(i))
 
             if len(i) < 50:
                 continue
             
-            cleaned_string = clean_text(i)
-            raw_string = r"{cleaned_string}"
+            cleaned_string = getStringWithDecodedUnicode(i)
+            # raw_string = r"{cleaned_string}"
 
-            substring = r"\"
+            # substring = r"\\u"
 
-            if search(substring, raw_string):
-                print("Found!")
-                articles["text"] = i
-                json.dump(articles, output)
-                output.write("\n")
+            # if search(substring, raw_string):
+            # print("Found!")
+            articles["text"] = cleaned_string
+            json_str = json.dumps(articles)
+            output.write(json_str)
+            output.write("\n")
                 
 
     output.close()
@@ -58,54 +61,61 @@ def to_raw(string):
 def sortByLength(o):
     return len(o)
 
+def getStringWithDecodedUnicode( value ):
+    findUnicodeRE = re.compile( '\\\\u([\da-f]{4})' )
+    def getParsedUnicode(x):
+        return chr( int( x.group(1), 16 ) )
+
+    return  findUnicodeRE.sub(getParsedUnicode, str( value ) )
+
 def clean_text(text):
 
         # simple text cleaning to remove some unicode representations
-        text = text.replace("\u00a0", "")  # empty space
-        text = text.replace("\u2022", "; ")  # bullet
-        text = text.replace("\u201c", "'")  # left double quotation mark
-        text = text.replace("\u201d", "'")  # right double quotation mark
+        # text = text.replace("\u00a0", "")  # empty space
+        # text = text.replace("\u2022", "; ")  # bullet
+        # text = text.replace("\u201c", "'")  # left double quotation mark
+        # text = text.replace("\u201d", "'")  # right double quotation mark
         text = text.replace("-\n", "")  # word broken over line break
         text = text.replace("\n", " ")  # line break
-        text = text.replace("\u03b7", "GREEK_ETA")  # greek eta
-        text = text.replace("\u03b1", "GREEK_ALPHA")  # greek alpha
-        text = text.replace("\u03b3", "GREEK_GAMMA")  # greek eta
-        text = text.replace("\t", " ")  # tab
-        text = text.replace("\u2212", "-")  # minus sign
-        text = text.replace("\u002B", "+")  # plus sign
-        text = text.replace("\u2206", "INCREMENT")  # increment
-        text = text.replace("\u2264", "<=")  # less than equal to
-        text = text.replace("\u2265", ">=")  # greater than equal to
-        text = text.replace("\u2013", "-")  # dash
-        text = text.replace("\u03b5", "GREEK_EPSILON")  # greek small letter epsilon
-        text = text.replace("\u03a6", "GREEK_PHI")  # greek phi
-        text = text.replace("\u2026", "...")  # horizontal elipsis
-        text = text.replace("\u2018", "'")  # right single quote
-        text = text.replace("\u2019", "'")  # left single quote
-        text = text.replace("\u03c4", "GREEK_TAU")  # greek tau
-        text = text.replace("\u00b5", "MICRO_SIGN")  # greek tau
-        text = text.replace("\u00b5", "GREEK_LAMBDA")  # greek lambda
-        text = text.replace("\u03c3", "GREEK_SIGMA")  # greek sigma
-        text = text.replace("\u20ac", "EURO")  # greek sigma
-        text = text.replace("\u2215", "/")  # division slash
-        text = text.replace("\u00e4", "ae")  # a umlaut
-        text = text.replace("\u00e8", "e")  # small latin e
-        text = text.replace("\u25e6", "")  # bullet
-        text = text.replace("\u00b1", "+-")  # plus minus sign
-        text = text.replace("\u2032", "PRIME")  # prime
-        text = text.replace("\ud835", " ")  # invalid character
-        text = text.replace("\udf0e", " ")  # invalid character
-        text = text.replace("\u00a9", "COPYRIGHT")  # copyright
-        text = text.replace("\u2191", "UP_ARROW")  # arrow
-        text = text.replace("\u2192", "RIGHT_ARROW")  # arrow
-        text = text.replace("\u2190", "LEFT_ARROW")  # arrow
-        text = text.replace("\u2193", "DOWN_ARROW")  # arrow
-        text = text.replace("\u2194", "LEFT_RIGHT_ARROW")  # arrow
-        text = text.replace("\u00a0", "_")  # no break space
-        text = text.replace("\f", "")  # page break
-        text = text.replace("\u0000", "")  # null character
-        text = text.replace("\u00b0", " degrees")  # degrees
-        text = re.sub("[\(\[].*?[\)\]]", "", text) # remove parentheses and brackets and what's inside them
+        # text = text.replace("\u03b7", "GREEK_ETA")  # greek eta
+        # text = text.replace("\u03b1", "GREEK_ALPHA")  # greek alpha
+        # text = text.replace("\u03b3", "GREEK_GAMMA")  # greek eta
+        # text = text.replace("\t", " ")  # tab
+        # text = text.replace("\u2212", "-")  # minus sign
+        # text = text.replace("\u002B", "+")  # plus sign
+        # text = text.replace("\u2206", "INCREMENT")  # increment
+        # text = text.replace("\u2264", "<=")  # less than equal to
+        # text = text.replace("\u2265", ">=")  # greater than equal to
+        # text = text.replace("\u2013", "-")  # dash
+        # text = text.replace("\u03b5", "GREEK_EPSILON")  # greek small letter epsilon
+        # text = text.replace("\u03a6", "GREEK_PHI")  # greek phi
+        # text = text.replace("\u2026", "...")  # horizontal elipsis
+        # text = text.replace("\u2018", "'")  # right single quote
+        # text = text.replace("\u2019", "'")  # left single quote
+        # text = text.replace("\u03c4", "GREEK_TAU")  # greek tau
+        # text = text.replace("\u00b5", "MICRO_SIGN")  # greek tau
+        # text = text.replace("\u00b5", "GREEK_LAMBDA")  # greek lambda
+        # text = text.replace("\u03c3", "GREEK_SIGMA")  # greek sigma
+        # text = text.replace("\u20ac", "EURO")  # greek sigma
+        # text = text.replace("\u2215", "/")  # division slash
+        # text = text.replace("\u00e4", "ae")  # a umlaut
+        # text = text.replace("\u00e8", "e")  # small latin e
+        # text = text.replace("\u25e6", "")  # bullet
+        # text = text.replace("\u00b1", "+-")  # plus minus sign
+        # text = text.replace("\u2032", "PRIME")  # prime
+        # text = text.replace("\ud835", " ")  # invalid character
+        # text = text.replace("\udf0e", " ")  # invalid character
+        # text = text.replace("\u00a9", "COPYRIGHT")  # copyright
+        # text = text.replace("\u2191", "UP_ARROW")  # arrow
+        # text = text.replace("\u2192", "RIGHT_ARROW")  # arrow
+        # text = text.replace("\u2190", "LEFT_ARROW")  # arrow
+        # text = text.replace("\u2193", "DOWN_ARROW")  # arrow
+        # text = text.replace("\u2194", "LEFT_RIGHT_ARROW")  # arrow
+        # text = text.replace("\u00a0", "_")  # no break space
+        # text = text.replace("\f", "")  # page break
+        # text = text.replace("\u0000", "")  # null character
+        # text = text.replace("\u00b0", " degrees")  # degrees
+        # text = re.sub("[\(\[].*?[\)\]]", "", text) # remove parentheses and brackets and what's inside them
         
         return text
 
