@@ -19,15 +19,18 @@ To generate training, validation, and testing sets, run 'parser.py' with default
 Prodigy will allow you to annotate your datasets. 
 - To start Prodigy, run `prodigy ner.manual name_of_dataset name_of_model ./path/to/dataset.jsonl --label INSTRUMENTS,SPACECRAFT` in the `IMaSC` directory. 
 - From there, open a browser and enter [http://localhost:8080/](http://localhost:8080/) in 
-the search bar. Prodigy should be running on port 8080 by default. 
+the search bar. Prodigy should be running on port 8080 by default.
 - To annotate text, click on the annotation you wish to apply and highlight the text you wish to annotate. 
 Prodigy will automatically apply the annotation. 
 - To remove an annotation, hover over the top left corner of an existing annotation 
-and click the "X". 
+and click the "X".
 - Once you have finished annotating a piece of text (you may not need to annotate anything), 
 click the green check mark. If a piece of text is not appropriate for annotation, 
 click the grey no symbol to skip it.
 - You can also click the grey return to undo an annotation.
+
+#### What to label
+
 ## Versioning
 
 [Semantic versioning](https://semver.org/) is used for this project. If you are contributing to this project, please use semantic versioning guidelines when submitting your pull request.
