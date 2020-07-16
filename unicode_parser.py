@@ -22,6 +22,8 @@ def get_unicode_text(
     source = open(jsonl_source)
     output = open(jsonl_output, "w+")
 
+    p = re.compile(r"\\[uU]([a-zA-Z0-9_]{4})")
+
     for line in source:
         j = json.loads(line)
         text = j.get("_source").get("text")
@@ -33,10 +35,10 @@ def get_unicode_text(
         # Adds dict, in JSON form, to output, line by line
         for i in chunks:
 
-            if len(i) < 5000:
+            if len(i) < 100:
                 continue
 
-            text = re.sub(r"\\u([\da-f]{4})", "", i)
+            text = re.sub(p, "", i.encode('unicode_escape').decode())
 
             # if getStringWithDecodedUnicode(i):
             # print("Found!")
