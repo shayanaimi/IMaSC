@@ -31,6 +31,9 @@ click the grey no symbol to skip it.
 
 #### What to label
 
+Currently, IMaSC supports labeling of scientific instruments and the spacecraft that carry them. 
+Using the directions above, label all instances of either scientific instruments or spacecraft.
+
 ## Versioning
 
 [Semantic versioning](https://semver.org/) is used for this project. If you are contributing to this project, please use semantic versioning guidelines when submitting your pull request.

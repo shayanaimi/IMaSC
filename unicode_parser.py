@@ -52,12 +52,6 @@ def get_unicode_text(
 def sortByLength(o):
     return len(o)
 
-# # Taken from StackOverflow
-# def getStringWithDecodedUnicode( value ):
-#     findUnicodeRE = 
-#     # def getParsedUnicode(x):
-#     #     return chr( int( x.group(1), 16 ) )
-
 def clean_text(text):
 
         # simple text cleaning to remove some unicode representations

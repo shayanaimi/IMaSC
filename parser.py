@@ -3,6 +3,8 @@ import random
 import os
 import codecs
 import numpy as np
+import re
+from re import search
 
 # jsonl_source = path to a file that we will read from
 # jsonl_output = path to the file that we will write to
@@ -21,6 +23,10 @@ def get_article_text(
     source = open(jsonl_source)
     output = open(jsonl_output, "w+")
 
+    # Regular expression pattern to find unicode escapes and hex escapes
+    unicode_remove = re.compile(r"\\[uU]([a-zA-Z0-9_]{4})")
+    hex_remove = re.compile(r"\\[xX]([a-zA-Z0-9_]{2})")
+
     for line in source:
         j = json.loads(line)
         #articles["title"] = j.get("_source").get("title")
@@ -28,14 +34,19 @@ def get_article_text(
 
         # Splits text at the paragraph level (as best as it can be done)
         chunks = text.split('\n\n')
-        # chunks.sort(key=sortByLength)
 
         # Adds dict, in JSON form, to output, line by line
         for i in chunks:
-            # print(i)
-            if len(i) < 50:
+
+            if len(i) < 100:
                 continue
-            cleaned_string = clean_text(i)
+
+            # Regular expressions to remove all unicode and hex escapes
+            text = re.sub(unicode_remove, "", i.encode('unicode_escape').decode())
+            text = re.sub(hex_remove, "", i)
+
+            # Clean the strings of other escapes and dump to temporary output file
+            cleaned_string = clean_text(text)
             articles["text"] = cleaned_string
             json.dump(articles, output)
             output.write("\n")
@@ -132,6 +143,7 @@ def clean_text(text, scrub_nums=False, scrub_names=False):
         text = text.replace("\f", "")  # page break
         text = text.replace("\u0000", "")  # null character
         text = text.replace("\u00b0", " degrees")  # degrees
+        text = re.sub(r"\\[n]", " ", text) # whatever \\n is
         # text = re.sub("[\(\[].*?[\)\]]", "", text) # remove parentheses and brackets and what's inside them
 
         if scrub_nums:
