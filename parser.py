@@ -24,8 +24,8 @@ def get_article_text(
     output = open(jsonl_output, "w+")
 
     # Regular expression pattern to find unicode escapes and hex escapes
-    unicode_remove = re.compile(r"\\[uU]([a-zA-Z0-9_]{4})")
-    hex_remove = re.compile(r"\\[xX]([a-zA-Z0-9_]{2})")
+    # unicode_remove = re.compile(r"\\[uU]([a-zA-Z0-9_]{4})")
+    # hex_remove = re.compile(r"\\[xX]([a-zA-Z0-9_]{2})")
 
     for line in source:
         j = json.loads(line)
@@ -42,8 +42,11 @@ def get_article_text(
                 continue
 
             # Regular expressions to remove all unicode and hex escapes
-            text = re.sub(unicode_remove, "", i.encode('unicode_escape').decode())
-            text = re.sub(hex_remove, "", i)
+            # text = re.sub(unicode_remove, "", i.encode('unicode_escape').decode())
+            # text = re.sub(hex_remove, "", i)
+
+            text = remove_unicode(i)
+            # text2 = remove_hex(text)
 
             # Clean the strings of other escapes and dump to temporary output file
             cleaned_string = clean_text(text)
@@ -60,7 +63,7 @@ def shuffle_article_text(
     training_set="data/microwave_limb_sounder/training_set.jsonl",
     validation_set="data/microwave_limb_sounder/validation_set.jsonl",
     testing_set="data/microwave_limb_sounder/testing_set.jsonl",
-    random_seed = 174
+    random_seed = 1742
 ):
 
     np.random.seed(random_seed)
@@ -96,6 +99,18 @@ def shuffle_article_text(
 
 def sortByLength(o):
     return len(o)
+
+def remove_unicode(text):
+    unicode_remove = re.compile(r"\\[uU]([a-zA-Z0-9_]{4})")
+    text = re.sub(unicode_remove, "", text.encode('unicode_escape').decode())
+    hex_remove = re.compile(r"\\[xX]([a-zA-Z0-9_]{2})")
+    text = re.sub(hex_remove, "", text)
+
+    return text
+
+def remove_hex(text):
+    hex_remove = re.compile(r"\\[xX]([a-zA-Z0-9_]{2})")
+    text = re.sub(hex_remove, "", text.decode('hex'))
 
 def clean_text(text, scrub_nums=False, scrub_names=False):
         # simple text cleaning to remove some unicode representations
