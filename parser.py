@@ -108,7 +108,7 @@ def remove_escapes(text):
     # Removes \n and other escapes
     text = re.sub(r"\\[a-zA-Z]", " ", text) # whatever \\n is
     text = re.sub(r"\\R", " ", text) # Should cover all line breaks
-    text = re.sub(r"\\\"", "", text)
+    text = re.sub(r"\"", "", text) # Exact match for whatever \" is
 
     return text
 
