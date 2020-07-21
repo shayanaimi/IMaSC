@@ -31,8 +31,8 @@ click the grey no symbol to skip it.
 
 #### What to label
 
-Currently, IMaSC supports labeling of scientific instruments and the spacecraft that carry them. 
-Using the directions above, label all instances of either scientific instruments or spacecraft.
+Currently, IMaSC supports labeling of scientific instruments (i.e. `MLS`) and the spacecraft (i.e. `Aura satellite`) that carry them. 
+Using the directions above, label all instances of scientific instruments and spacecraft in the text.
 
 ## Versioning
 

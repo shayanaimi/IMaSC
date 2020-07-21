@@ -41,12 +41,8 @@ def get_article_text(
             if len(i) < 100:
                 continue
 
-            # Regular expressions to remove all unicode and hex escapes
-            # text = re.sub(unicode_remove, "", i.encode('unicode_escape').decode())
-            # text = re.sub(hex_remove, "", i)
-
-            text = remove_unicode(i)
-            # text2 = remove_hex(text)
+            # Remove all unicode and hex escapes
+            text = remove_escapes(i)
 
             # Clean the strings of other escapes and dump to temporary output file
             cleaned_string = clean_text(text)
@@ -100,30 +96,32 @@ def shuffle_article_text(
 def sortByLength(o):
     return len(o)
 
-def remove_unicode(text):
+def remove_escapes(text):
+    # Remove unicode escapes
     unicode_remove = re.compile(r"\\[uU]([a-zA-Z0-9_]{4})")
     text = re.sub(unicode_remove, "", text.encode('unicode_escape').decode())
+
+    # Remove hex escapes
     hex_remove = re.compile(r"\\[xX]([a-zA-Z0-9_]{2})")
     text = re.sub(hex_remove, "", text)
 
+    # Removes \n and other escapes
+    text = re.sub(r"\\[a-zA-Z]", " ", text) # whatever \\n is
+    text = re.sub(r"\\R", " ", text) # Should cover all line breaks
+    text = re.sub(r"\\\"", "", text)
+
     return text
 
-def remove_hex(text):
-    hex_remove = re.compile(r"\\[xX]([a-zA-Z0-9_]{2})")
-    text = re.sub(hex_remove, "", text.decode('hex'))
-
-def clean_text(text, scrub_nums=False, scrub_names=False):
+def clean_text(text):
         # simple text cleaning to remove some unicode representations
+        text = text.replace("-\n", "")  # word broken over line break
         text = text.replace("\u00a0", "")  # empty space
         text = text.replace("\u2022", "; ")  # bullet
         text = text.replace("\u201c", "'")  # left double quotation mark
         text = text.replace("\u201d", "'")  # right double quotation mark
-        text = text.replace("-\n", "")  # word broken over line break
-        text = text.replace("\n", " ")  # line break
         text = text.replace("\u03b7", "GREEK_ETA")  # greek eta
         text = text.replace("\u03b1", "GREEK_ALPHA")  # greek alpha
         text = text.replace("\u03b3", "GREEK_GAMMA")  # greek eta
-        text = text.replace("\t", " ")  # tab
         text = text.replace("\u2212", "-")  # minus sign
         text = text.replace("\u002B", "+")  # plus sign
         text = text.replace("\u2206", "INCREMENT")  # increment
@@ -155,25 +153,12 @@ def clean_text(text, scrub_nums=False, scrub_names=False):
         text = text.replace("\u2193", "DOWN_ARROW")  # arrow
         text = text.replace("\u2194", "LEFT_RIGHT_ARROW")  # arrow
         text = text.replace("\u00a0", "_")  # no break space
-        text = text.replace("\f", "")  # page break
         text = text.replace("\u0000", "")  # null character
         text = text.replace("\u00b0", " degrees")  # degrees
-        text = re.sub(r"\\[n]", " ", text) # whatever \\n is
-        # text = re.sub("[\(\[].*?[\)\]]", "", text) # remove parentheses and brackets and what's inside them
+        text = text.replace("\\\\", "") # get rid of random backslashes
+        text = text.replace("\\\"", "") # get rid of random quotes
 
-        if scrub_nums:
-            # remove any numbers
-            text = ''.join([i for i in text if not i.isdigit()])
-            # replace dash and spaces with comma for later splitting
-            text = text.replace('-', ',').strip()
-
-        if scrub_names:
-            text = text.strip()
-            if len(text) > 1:
-                return text
-
-        else:
-            return text
+        return text
 
 # Executes the script
 if __name__ == "__main__":
