@@ -10,26 +10,22 @@ from re import search
 # jsonl_output = path to the file that we will write to
 def get_article_text(
     jsonl_source="data/microwave_limb_sounder/mls_pubs.jsonl",
-    jsonl_output="data/microwave_limb_sounder/article_text.jsonl",
+    jsonl_output="data/microwave_limb_sounder/article_text.jsonl"
 ):
     # Dict for each article, may need more than the title and text
     articles = {}
-    #articles["title"] = []
+    articles["title"] = []
     articles["text"] = []
     text = ""
 
     # Opens the source and output and iterates through each line of the source
-    # Adds titles and article texts to dict
     source = open(jsonl_source)
     output = open(jsonl_output, "w+")
 
-    # Regular expression pattern to find unicode escapes and hex escapes
-    # unicode_remove = re.compile(r"\\[uU]([a-zA-Z0-9_]{4})")
-    # hex_remove = re.compile(r"\\[xX]([a-zA-Z0-9_]{2})")
-
+    # Adds article texts to dict
     for line in source:
         j = json.loads(line)
-        #articles["title"] = j.get("_source").get("title")
+        articles["title"] = j.get("_source").get("title")
         text = j.get("_source").get("text")
 
         # Splits text at the paragraph level (as best as it can be done)
@@ -71,8 +67,7 @@ def shuffle_article_text(
     # Sorts the data by the random number
     data.sort()
 
-    # Writes 70% of shuffled text to training set and 15% each to validation
-    # and testing sets (70 + 15 + 15 = 100)
+    # Writes 70% of shuffled text to training set and 15% each to validation and testing sets (70 + 15 + 15 = 100)
     training = open(training_set, "w+")
     validation = open(validation_set, "w+")
     testing = open(testing_set, "w+")
@@ -90,7 +85,6 @@ def shuffle_article_text(
     validation.close()
     testing.close()
     os.remove(article_text)
-
 
 def sortByLength(o):
     return len(o)

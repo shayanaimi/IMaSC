@@ -18,6 +18,7 @@ To generate training, validation, and testing sets, run 'parser.py' with default
 
 Prodigy will allow you to annotate your datasets. 
 - To start Prodigy, run `prodigy ner.manual name_of_dataset name_of_model ./path/to/dataset.jsonl --label INSTRUMENTS,SPACECRAFT` in the `IMaSC` directory. 
+    - In my case I ran `prodigy ner.manual train_imasc en_core_web_sm ./data/microwave_limb_sounder/training_set.jsonl --label INSTRUMENT,SPACECRAFT`
 - From there, open a browser and enter [http://localhost:8080/](http://localhost:8080/) in 
 the search bar. Prodigy should be running on port 8080 by default.
 - To annotate text, click on the annotation you wish to apply and highlight the text you wish to annotate. 
