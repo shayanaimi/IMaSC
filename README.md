@@ -16,7 +16,7 @@ To generate training, validation, and testing sets, run 'parser.py' with default
 
 ### Using Prodigy
 
-Prodigy will allow you to annotate your datasets. 
+Prodigy will allow you to annotate your datasets. Please note that my Prodigy wheel installation path is specific to my laptop in `requirements.txt` at this time.
 - To start Prodigy, run `prodigy ner.manual name_of_dataset name_of_model ./path/to/dataset.jsonl --label INSTRUMENTS,SPACECRAFT` in the `IMaSC` directory. 
     - In my case I ran `prodigy ner.manual train_imasc en_core_web_sm ./data/microwave_limb_sounder/training_set.jsonl --label INSTRUMENT,SPACECRAFT`
 - From there, open a browser and enter [http://localhost:8080/](http://localhost:8080/) in 
