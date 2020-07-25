@@ -20,6 +20,7 @@ __pycache__/
 training_set.jsonl
 validation_set.jsonl
 testing_set.jsonl
+raw_text/
 
 # Workspaces
 .code-workspace
