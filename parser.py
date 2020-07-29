@@ -92,6 +92,7 @@ def sortByLength(o):
 def remove_escapes(text):
     # Remove unicode escapes
     text = text.replace("-\n", "")  # word broken over line break
+    text = text.replace("- ", "")  # word broken over line break
     unicode_remove = re.compile(r"\\[uU]([a-zA-Z0-9]{4})")
     text = re.sub(unicode_remove, "", text.encode('unicode_escape').decode())
 
