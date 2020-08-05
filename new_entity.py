@@ -13,11 +13,6 @@ import imblearn
 # new entity label
 LABEL = ["INSTRUMENT", "SPACECRAFT"]
 
-# training data
-# Note: If you're using an existing model, make sure to mix in examples of
-# other entity types that spaCy correctly recognized before. Otherwise, your
-# model might learn the new type, but "forget" what it previously knew.
-# https://explosion.ai/blog/pseudo-rehearsal-catastrophic-forgetting
 TRAIN_DATA = []
 
 train_file = open("spacy_annotations.jsonl")
