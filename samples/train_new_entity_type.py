@@ -6,33 +6,24 @@ import warnings
 from pathlib import Path
 import spacy
 from spacy.util import minibatch, compounding
+import json
 
 
 # new entity label
-LABEL = "ANIMAL"
+LABEL = "INSTRUMENT"
 
 # training data
 # Note: If you're using an existing model, make sure to mix in examples of
 # other entity types that spaCy correctly recognized before. Otherwise, your
 # model might learn the new type, but "forget" what it previously knew.
 # https://explosion.ai/blog/pseudo-rehearsal-catastrophic-forgetting
-TRAIN_DATA = [
-    (
-        "Horses are too tall and they pretend to care about your feelings",
-        {"entities": [(0, 6, LABEL)]},
-    ),
-    ("Do they bite?", {"entities": []}),
-    (
-        "horses are too tall and they pretend to care about your feelings",
-        {"entities": [(0, 6, LABEL)]},
-    ),
-    ("horses pretend to care about your feelings", {"entities": [(0, 6, LABEL)]}),
-    (
-        "they pretend to care about your feelings, those horses",
-        {"entities": [(48, 54, LABEL)]},
-    ),
-    ("horses?", {"entities": [(0, 6, LABEL)]}),
-]
+TRAIN_DATA = []
+
+train_file = open("spacy_annotations.jsonl")
+
+for line in train_file:
+    j = json.loads(line)
+    TRAIN_DATA.append(j)
 
 
 @plac.annotations(
@@ -61,7 +52,7 @@ def main(model=None, new_model_name="animal", output_dir=None, n_iter=30):
 
     ner.add_label(LABEL)  # add new entity label to entity recognizer
     # Adding extraneous labels shouldn't mess anything up
-    ner.add_label("VEGETABLE")
+    ner.add_label("SPACECRAFT")
     if model is None:
         optimizer = nlp.begin_training()
     else:
@@ -87,7 +78,7 @@ def main(model=None, new_model_name="animal", output_dir=None, n_iter=30):
             print("Losses", losses)
 
     # test the trained model
-    test_text = "Do you like horses?"
+    test_text = "Time series of TES CO (681 and 422 hPa) and MLS CO (215 and 147 hPa) (black) and model results for GEOS-4 (red) and GEOS-5 (blue) over South America. The MLS CO values at 215 hPa have been scaled by 0.5 and those at 147 hPa by 0.7, based on the validation shown in Livesey et al. (2008). Solid lines show the model results with the AKs applied, dashed lines show the model results without the AKs. Right: Time series of tagged CO tracers over South America from individual sources: biomass burning in South America (red), southern Africa (green), northern Africa (blue) and Indonesia (orange), and the biogenic source from isoprene (purple). Results are shown for GEOS-4 (solid lines) and GEOS-5 (dashed lines) at model levels 688, 430, 226, and 139 hPa."
     doc = nlp(test_text)
     print("Entities in '%s'" % test_text)
     for ent in doc.ents:

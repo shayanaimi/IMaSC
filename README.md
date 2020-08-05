@@ -43,6 +43,10 @@ click the grey no symbol to skip it.
 Currently, IMaSC supports labeling of scientific instruments (i.e. `MLS` ) and the spacecraft (i.e. `Aura satellite` ) that carry them. 
 Using the directions above, label all instances of scientific instruments and spacecraft in the text.
 
+#### Training
+
+Train the model with the following command: `prodigy ner.batch-train train_imasc en_core_web_sm -n 100`. A flowchart for how to train your specific model can be found [here](https://prodi.gy/prodigy_flowchart_ner-36f76cffd9cb4ef653a21ee78659d366.pdf).
+
 ## Versioning
 
 [Semantic versioning](https://semver.org/) is used for this project. If you are contributing to this project, please use semantic versioning guidelines when submitting your pull request.
