@@ -7,6 +7,7 @@ from pathlib import Path
 import spacy
 from spacy.util import minibatch, compounding
 import json
+import imblearn
 
 
 # new entity label
@@ -32,7 +33,7 @@ for line in train_file:
     output_dir=("Optional output directory", "option", "o", Path),
     n_iter=("Number of training iterations", "option", "n", int),
 )
-def main(model=None, new_model_name=None, output_dir=None, n_iter=100):
+def main(model=None, new_model_name=None, output_dir=None, n_iter=10):
     """Set up the pipeline and entity recognizer, and train the new entity."""
     random.seed(0)
     if model is not None:
@@ -50,13 +51,14 @@ def main(model=None, new_model_name=None, output_dir=None, n_iter=100):
     else:
         ner = nlp.get_pipe("ner")
 
-    for label in LABEL
+    for label in LABEL:
         ner.add_label(label)  # add new entity label to entity recognizer
 
     if model is None:
         optimizer = nlp.begin_training()
     else:
         optimizer = nlp.resume_training()
+
     move_names = list(ner.move_names)
     # get names of other pipes to disable them during training
     pipe_exceptions = ["ner", "trf_wordpiecer", "trf_tok2vec"]
@@ -70,6 +72,7 @@ def main(model=None, new_model_name=None, output_dir=None, n_iter=100):
         # batch up the examples using spaCy's minibatch
         for itn in range(n_iter):
             random.shuffle(TRAIN_DATA)
+            # Need some oversampling somewhere in here
             batches = minibatch(TRAIN_DATA, size=sizes)
             losses = {}
             for batch in batches:
@@ -78,7 +81,7 @@ def main(model=None, new_model_name=None, output_dir=None, n_iter=100):
             #print("Losses", losses)
 
     # test the trained model
-    test_text = "Time series of TES CO (681 and 422 hPa) and MLS CO (215 and 147 hPa) (black) and model results for GEOS-4 (red) and GEOS-5 (blue) over South America. The MLS CO values at 215 hPa have been scaled by 0.5 and those at 147 hPa by 0.7, based on the validation shown in Livesey et al. (2008). Solid lines show the model results with the AKs applied, dashed lines show the model results without the AKs. Right: Time series of tagged CO tracers over South America from individual sources: biomass burning in South America (red), southern Africa (green), northern Africa (blue) and Indonesia (orange), and the biogenic source from isoprene (purple). Results are shown for GEOS-4 (solid lines) and GEOS-5 (dashed lines) at model levels 688, 430, 226, and 139 hPa."
+    test_text = "We will show with scatter diagrams of water vapor and ozone mixing ratios from the balloon soundings that there are signicant seasonal differences in the contributions from wave, source, and path variability. We augment the analysis by comparing the variance in the balloon soundings to simulated proles constructed from water vapor and ozone data from the Aura Microwave Limb Sounder (MLS) using a new reverse domain lling technique."
     doc = nlp(test_text)
     print("Entities in '%s'" % test_text)
     for ent in doc.ents:
