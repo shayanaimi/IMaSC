@@ -30,7 +30,17 @@ instruments = [
     "JLH",
     "JPL Laser Hygrometer",
     "OSIRIS",
-    ""
+    "Optical Spectrograph and Infrared Imager System",
+    "CLAES",
+    "Cryogenic Limb Array Etalon Spectrometer",
+    "CALIOP",
+    "Cloud-Aerosol Lidar with Orthogonal Polarization",
+    "TOMS",
+    "total ozone mapping spectrometer",
+    "MODIS",
+    "Moderate Resolution Imaging Spectroradiometer",
+    "OMI",
+    "Ozone Monitoring Instrument"
 ]
 spacecraft = []
 models = []
