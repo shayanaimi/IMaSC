@@ -56,8 +56,8 @@ algorithms  = []
 # text = JSON text
 # Substring checking
 
-spans.append(item)
-spans.append(item)
+# spans.append(item)
+# spans.append(item)
 
-d
+
 print(spans)
