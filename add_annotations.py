@@ -13,6 +13,7 @@ instruments = [
     "Microwave Limb Sounder",
     "SMR",
     "Sub-Millimetre Radiometer",
+    "Sub-Millimeter Radiometer",
     "ACE-FTS",
     "Fourier Transform Ultra-Violet Spectrometer",
     "SCIAMACHY",
@@ -42,7 +43,7 @@ instruments = [
     "OMI",
     "Ozone Monitoring Instrument"
 ]
-spacecraft = []
+spacecraft = ["Aura", "AURA", "Odin", "ODIN", "Envisat", "ENVISAT", "UARS", "Upper Atmosphere Research Satellite"]
 models = []
 experiments = ["ACE", "Atmospheric Chemistry Experiment"]
 locations = [] # DOn't know if I want this one

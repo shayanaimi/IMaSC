@@ -2,7 +2,7 @@
 |------|-------|-------|-------|------|
 | MLS  |  ODIN | CPH  |
 |  SMR |  AURA | COH  |
-| ACE-FTS  |  Envisat |  WMO |
+| ACE-FTS|  Envisat |  WMO |
 | SCIAMACHY  |  UARS |  EOS |
 |  MIPAS |   | NLC  |
 | GEOS  |   | ENSO |
@@ -12,11 +12,11 @@
 |  JLH |   | CIRES  |
 | OSIRIS  |   | KNM  |
 | CLAES  |   |  SCIAVISIE |
-| IASI  |   |  STOIC |
-| CALIOP  |   | MESSy  |
-| TOMS  |   | EMAC  |
-|  MODIS |   | COSMO  |
-| OMI  |   |  CM50 |
+|  CALIOP |   |  STOIC |
+| TOMS  |   | MESSy  |
+| MODIS  |   | EMAC  |
+| OMI  |   | COSMO  |
+|   |   |  CM50 |
 |   |   |  GW |
 |   |   | AOD  |
 |   |   |  NCSU |
