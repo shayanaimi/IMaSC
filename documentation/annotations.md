@@ -1,4 +1,4 @@
-| Instrument | Spacecraft | Other |Experiments| Models |
+| Instrument | Spacecraft | Other |Experiments| Models |    Algorithms   |
 |------|-------|-------|-------|------|
 | MLS  |  ODIN | CPH  |
 |  SMR |  AURA | COH  |
@@ -16,7 +16,7 @@
 | CALIOP  |   | MESSy  |
 | TOMS  |   | EMAC  |
 |  MODIS |   | COSMO  |
-|   |   |  CM50 |
+| OMI  |   |  CM50 |
 |   |   |  GW |
 |   |   | AOD  |
 |   |   |  NCSU |
