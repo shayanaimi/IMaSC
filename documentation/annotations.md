@@ -2,23 +2,23 @@ This table only covers acronyms.
 
 | Row | Instrument | Spacecraft | Experiments | Models | Algorithms | Other       |
 |-----|------------|------------|-------------|--------|------------|-------------|
-| 1   | MLS        | ODIN       |             |        |            | CPH         |
-| 2   | SMR        | AURA       |             |        |            | COH         |
-| 3   | ACE-FTS    | Envisat    |             |        |            | WMO         |
-| 4   | SCIAMACHY  | UARS       |             |        |            | EOS         |
-| 5   | MIPAS      |            |             |        |            | NLC         |
-| 6   | GEOS       |            |             |        |            | ENSO        |
-| 7   | IASI       |            |             |        |            | SST         |
-| 8   | HWV        |            |             |        |            | KNMI        |
-| 9   | CFH        |            |             |        |            | PSC         |
-| 10  | JLH        |            |             |        |            | CIRES       |
-| 11  | OSIRIS     |            |             |        |            | KNM         |
-| 12  | CLAES      |            |             |        |            | SCIAVISIE   |
-| 13  | CALIOP     |            |             |        |            | STOIC       |
+| 1   | MLS        | ODIN       | ACE         |        |            | NLC         |
+| 2   | SMR        | AURA       |             |        |            | WMO         |
+| 3   | ACE-FTS    | Envisat    |             |        |            | CPH         |
+| 4   | SCIAMACHY  | UARS       |             |        |            | COH         |
+| 5   | MIPAS      |            |             |        |            | ENSO        |
+| 6   | GEOS       |            |             |        |            | SST         |
+| 7   | IASI       |            |             |        |            | KNMI        |
+| 8   | HWV        |            |             |        |            | PSC         |
+| 9   | CFH        |            |             |        |            | CIRES       |
+| 10  | JLH        |            |             |        |            | KNM         |
+| 11  | OSIRIS     |            |             |        |            | SCIAVISIE   |
+| 12  | CLAES      |            |             |        |            | STOIC       |
+| 13  | CALIOP     |            |             |        |            |             |
 | 14  | TOMS       |            |             |        |            | MESSy       |
 | 15  | MODIS      |            |             |        |            | EMAC        |
 | 16  | OMI        |            |             |        |            | COSMO       |
-| 17  |            |            |             |        |            | CM50        |
+| 17  | EOS        |            |             |        |            | CM50        |
 | 18  |            |            |             |        |            | GW          |
 | 19  |            |            |             |        |            | AOD         |
 | 20  |            |            |             |        |            | NCSU        |
