@@ -9,9 +9,3 @@
 
 Note: Accuracy decreases in the last 25% for INSTRUMENT and when training both. It increases when training SPACECRAFT.
 This is using the en_core_web_sm model.
-
-
-Using a blank:en model, we get the following:
-
-|   | INSTRUMENT  | SPACECRAFT  | Both  |
-|---|---|---|---|

@@ -45,7 +45,8 @@ Using the directions above, label all instances of scientific instruments and sp
 
 #### Training
 
-Train the model with the following command: `prodigy ner.batch-train train_imasc en_core_web_sm -n 100`. A flowchart for how to train your specific model can be found [here](https://prodi.gy/prodigy_flowchart_ner-36f76cffd9cb4ef653a21ee78659d366.pdf).
+Train the model with the following command: `prodigy ner.batch-train train_imasc en_core_web_sm -n 100`. A flowchart for how to train your specific model can be found [here](https://prodi.gy/prodigy_flowchart_ner-36f76cffd9cb4ef653a21ee78659d366.pdf). 
+About 4000 annotations are needed to train the model.
 
 ## Versioning
 
