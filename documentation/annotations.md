@@ -1,28 +1,28 @@
-This table only covers acronyms.
+This table only covers acronyms, as full words should be relatively obvious in context.
 
 | Row | Instrument | Spacecraft | Experiments | Models    | Algorithms | Other       |
 |-----|------------|------------|-------------|-----------|------------|-------------|
 | 1   | MLS        | ODIN       | ACE         | SOCOL-AER |            | NLC         |
 | 2   | SMR        | AURA       | AVE         | GEOSCCM   |            | WMO         |
 | 3   | ACE-FTS    | Envisat    |             | SIC       |            | CPH         |
-| 4   | SCIAMACHY  | UARS       |             |           |            | COH         |
-| 5   | MIPAS      | NOAA       |             |           |            | ENSO        |
-| 6   | GEOS       | Metop - A  |             |           |            | SST         |
-| 7   | IASI       |            |             |           |            | KNMI        |
+| 4   | SCIAMACHY  | UARS       |             | EMAC      |            | COH         |
+| 5   | MIPAS      | NOAA       |             | COSMO     |            | ENSO        |
+| 6   | GEOS       | Metop - A  |             | CM50      |            | SST         |
+| 7   | IASI       |            |             | CM12      |            | KNMI        |
 | 8   | HWV        |            |             |           |            | PSC         |
 | 9   | CFH        |            |             |           |            | CIRES       |
 | 10  | JLH        |            |             |           |            | KNM         |
 | 11  | OSIRIS     |            |             |           |            | SCIAVISIE   |
 | 12  | CLAES      |            |             |           |            | STOIC       |
 | 13  | CALIOP     |            |             |           |            | QBO         |
-| 14  | TOMS       |            |             |           |            |             |
-| 15  | MODIS      |            |             |           |            | EMAC        |
-| 16  | OMI        |            |             |           |            | COSMO       |
-| 17  | EOS        |            |             |           |            | CM50        |
-| 18  | OPC        |            |             |           |            | GW          |
-| 19  | AIS        |            |             |           |            | AOD         |
-| 20  | GFAS       |            |             |           |            | NCSU        |
-| 21  | CLAES      |            |             |           |            | EPA         |
+| 14  | TOMS       |            |             |           |            | MESSy       |
+| 15  | MODIS      |            |             |           |            | GW          |
+| 16  | OMI        |            |             |           |            | AOD         |
+| 17  | EOS        |            |             |           |            | NCSU        |
+| 18  | OPC        |            |             |           |            | EPA         |
+| 19  | AIS        |            |             |           |            |             |
+| 20  | GFAS       |            |             |           |            |             |
+| 21  | CLAES      |            |             |           |            |             |
 | 22  | SHIMMER    |            |             |           |            | LWP         |
 | 23  | MAS        |            |             |           |            | EC          |
 | 24  | DIAL       |            |             |           |            | NSD         |
@@ -92,8 +92,7 @@ This table only covers acronyms.
 | 88  |            |            |             |           |            | SBUV2       |
 | 89  |            |            |             |           |            | SEA         |
 | 90  |            |            |             |           |            | Q2DW        |
-| 91  |            |            |             |           |            | MESSy       |
-
+| 91  |            |            |             |           |            |             |
 | 92  |            |            |             |        |            | EESC        |
 | 93  |            |            |             |        |            | GHG            |
 | 94  |            |            |             |        |            | PBL            |

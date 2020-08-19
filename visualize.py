@@ -49,7 +49,8 @@ tropospheric ozone."""
 
 nlp = spacy.load("models")
 doc = nlp(text)
+nlp.to_disk("documentation")
 # displacy.serve(doc, style="ent", options=options)
-html = displacy.render(doc, style="ent", options=options)
-pdfkit.from_string(html,'pres.pdf')
+# html = displacy.render(doc, style="ent", options=options)
+# pdfkit.from_string(html,'pres.pdf')
 

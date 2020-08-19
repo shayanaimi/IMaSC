@@ -1,11 +1,7 @@
-|                       | INSTRUMENT | SPACECRAFT | Both  |
-|-----------------------|------------|------------|-------|
-| Number of annotations | 108        | 32         | 140   |
-| Batch training        | 0.657      | 0.594      | 0.636 |
-| Curve training        | 0.63       | 0.62       | 0.63  |
-|                       |            |            |       |
-| Batch training        | 0.593      | 0.562      | 0.564 |
+These accuracy measures were taken by batch training the en_core_web_sm model to add the INSTRUMENT and SPACECRAFT entity types.
+Comparisons are made by training the model with both entity types and then each individual entity type without saving the model.
 
-
-Note: Accuracy decreases in the last 25% for INSTRUMENT and when training both. It increases when training SPACECRAFT.
-This is using the en_core_web_sm model.
+| Number of accept/reject examples | INSTRUMENT | SPACECRAFT | Both  |
+|----------------------------------|------------|------------|-------|
+| 327                              | 0.657      | 0.594      | 0.636 |
+| 393                              | 0.776      | 0.765      | 0.773 |
